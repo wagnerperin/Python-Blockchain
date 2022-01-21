@@ -1,3 +1,4 @@
+from difflib import diff_bytes
 from backend.blockchain.block import Block, GENESIS_DATA
 
 def test_mine_block():
@@ -8,6 +9,7 @@ def test_mine_block():
     assert isinstance(block, Block)
     assert block.data == data
     assert block.last_hash == last_block.hash
+    assert block.hash[0:block.difficulty] == '0' * block.difficulty
 
 def test_genesis():
     genesis = Block.genesis()
